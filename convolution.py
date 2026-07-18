@@ -1,48 +1,48 @@
 # -----------------------------------------------
-# CONVOLUTIA SI PADDING-UL (MOTORUL FILTRARII)
+# CONVOLUTION AND PADDING (THE FILTERING ENGINE)
 # -----------------------------------------------
 
-import numpy as np # lucrul cu matrice
+import numpy as np
 
-# Functie care adauga margini artificiale in jurul imaginii
+# Adds padding around the image
 def pad_image(image, pad, mode):
 
     if mode == "zero":
-        # Adaugam pixeli 0 la margini
+        # Add zero-valued pixels around the image
         return np.pad(image, pad, mode='constant')
 
     elif mode == "mirror":
-        # Reflectam imaginea la margini (mai natural pentru procesarea imaginii)
+        # Mirror the image at the borders
         return np.pad(image, pad, mode='reflect')
 
     elif mode == "replicate":
-        # Repetam pixelii de la margine
+        # Replicate the border pixels
         return np.pad(image, pad, mode='edge')
 
     else:
-        raise ValueError("Tip padding invalid!")
+        raise ValueError("Invalid padding!")
 
 
-# Functie care aplica filtrul Gaussian prin convolutie
+# Applies the selected kernel using convolution
 def convolve2d(image, kernel, padding_type):
 
-    # Luam dimensiunea kernel-ului, care este patrat (de exemplu: 5x5)
+    # Get the kernel size (for example: 5x5)
     k = kernel.shape[0]
-    # Calculam padding-ul
+    # Calculate the required padding
     pad = k // 2
 
-    # Aplicam padding-ul si obtinem o imagine mai mare
+    # Apply padding to the image
     padded = pad_image(image, pad, padding_type)
 
-    # Cream matricea rezultat, care are acceasi dimensiune cu originalul
+    # Create the output image with the same dimensions as the original
     output = np.zeros_like(image, dtype=float)
 
-    # Parcurgem fiecare pixel
+    # Process each pixel
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
-            # Extragem regiunea locala
+            # Extract the local neighborhood
             region = padded[i:i+k, j:j+k]
-            # Aplicam formula convolutiei
+            # Perform the convolution
             output[i, j] = np.sum(region * kernel)
 
     return output

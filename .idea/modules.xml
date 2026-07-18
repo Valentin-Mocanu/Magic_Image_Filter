@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Filtrarea_Gaussiana_a_Imaginilor.iml" filepath="$PROJECT_DIR$/.idea/Filtrarea_Gaussiana_a_Imaginilor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Magic_Image_Filter.iml" filepath="$PROJECT_DIR$/.idea/Magic_Image_Filter.iml" />
     </modules>
   </component>
 </project>

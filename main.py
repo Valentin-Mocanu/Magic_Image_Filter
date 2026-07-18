@@ -1,5 +1,5 @@
 # ---------------------
-# FISIERUL PRINCIPAL
+# MAIN FILE
 # ---------------------
 
 import tkinter as tk

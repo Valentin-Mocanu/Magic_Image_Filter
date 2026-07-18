@@ -1,28 +1,24 @@
 # -------------------------------
-# INCARCARE + SALVARE IMAGINE
+# SAVE AND LOAD IMAGE
 # -------------------------------
 
-from PIL import Image # conversie numpy in imagine
-import numpy as np # lucrul cu matrice
+from PIL import Image # convert NumPy array to image
+import numpy as np
 
-# Functie de incarcare imagine
 def load_image(path):
-    # Deschidem imaginea
     img = Image.open(path)
 
-    # Daca e color
+    # Check if the image is in RGB format
     if img.mode == "RGB":
         bit_depth = 24
     else:
-        # Convertim la grayscale
+        # Convert the image to grayscale
         img = img.convert("L")
         bit_depth = 8
 
-    # Returnam matricea + bit depth
     return np.array(img), bit_depth
 
 
-# Functie de salvare imagine
 def save_image(path, array, bit_depth):
 
     if bit_depth == 24:
