@@ -20,7 +20,7 @@ class App:
         # Main windows
         self.root = root
         self.root.title("Magic Image Filter")
-        self.root.geometry("1400x700")
+        self.root.geometry("1400x720")
 
         # Original image
         self.image = None
@@ -36,7 +36,7 @@ class App:
         # --------------------------
         # MAIN LAYOUT - 3 COLUMNS
         # --------------------------
-        main_frame = tk.Frame(root)
+        main_frame = tk.Frame(root, bg="#E6E6E6")
         main_frame.pack(fill="both", expand=True)
 
 
@@ -45,9 +45,11 @@ class App:
         # ---------------------------
         control_frame = tk.LabelFrame(main_frame,
                                       text="Control Panel",
+                                      font=("Arial", 12, "bold"),
                                       padx=10,
-                                      pady=10)
-        control_frame.pack(side="left", fill="y", padx=15, pady=10)
+                                      pady=10,
+                                      bg="#E6E6E6")
+        control_frame.pack(side="left", fill="y", padx=15, pady=15)
 
         tk.Button(control_frame,
                   text="Load image",
@@ -64,7 +66,7 @@ class App:
                   command=self.save_image_file).pack(pady=5)
 
         # Spacing between buttons
-        tk.Label(control_frame,text="").pack(pady=5)
+        tk.Label(control_frame, bg="#E6E6E6", text="").pack(pady=5)
 
         tk.Button(control_frame,
                   text="Load kernel",
@@ -80,39 +82,45 @@ class App:
                   activebackground="#4099E0",
                   command=self.save_kernel_file).pack(pady=5)
 
-        tk.Label(control_frame, text="").pack(pady=5)
+        tk.Label(control_frame, bg="#E6E6E6", text="").pack(pady=5)
 
         # Kernel size
-        tk.Label(control_frame, text="Kernel size (odd number):").pack()
+        tk.Label(control_frame, bg="#E6E6E6", text="Kernel size (odd number):").pack()
         self.size_entry = tk.Entry(control_frame, width=10)
         self.size_entry.insert(0, "5")
         self.size_entry.pack(pady=5)
 
         # Sigma
-        tk.Label(control_frame, text="Sigma:").pack()
+        tk.Label(control_frame, bg="#E6E6E6", text="Sigma:").pack()
         self.sigma_entry = tk.Entry(control_frame, width=10)
         self.sigma_entry.insert(0, "1.0")
         self.sigma_entry.pack(pady=5)
 
-        tk.Label(control_frame, text="").pack(pady=5)
+        tk.Label(control_frame, bg="#E6E6E6", text="").pack(pady=5)
 
         # Padding
-        tk.Label(control_frame, text="Padding type:").pack()
+        tk.Label(control_frame, bg="#E6E6E6", text="Padding type:").pack()
 
         self.padding_var = tk.StringVar(value="mirror")
 
         tk.Radiobutton(control_frame,
                        text="Zero Padding",
+                       bg="#E6E6E6",
+                       activebackground="#E6E6E6",
                        variable=self.padding_var,
                        value="zero").pack(anchor="w", padx=26)
 
         tk.Radiobutton(control_frame,
                        text="Mirror Padding",
+                       bg="#E6E6E6",
+                       activebackground="#E6E6E6",
                        variable=self.padding_var,
                        value="mirror").pack(anchor="w", padx=26)
 
         tk.Radiobutton(control_frame,
                        text="Replicate Padding",
+                       bg="#E6E6E6",
+                       activebackground="#E6E6E6",
                        variable=self.padding_var,
                        value="replicate").pack(anchor="w", padx=26)
 
@@ -160,12 +168,15 @@ class App:
         # -------------------------------
         original_frame = tk.LabelFrame(main_frame,
                                        text="Original image",
+                                       font=("Arial", 12, "bold"),
                                        padx=10,
-                                       pady=10)
-        original_frame.pack(side="left", expand=True, fill="both", padx=15, pady=10)
+                                       pady=10,
+                                       bg="#E6E6E6")
+        original_frame.pack(side="left", expand=True, fill="both", padx=15, pady=15)
 
         self.original_label = tk.Label(original_frame,
                                        text="Your image will appear here!",
+                                       bg="#E6E6E6",
                                        font=("Arial", 14),
                                        fg="gray")
         self.original_label.pack(expand=True)
@@ -176,12 +187,15 @@ class App:
         # ------------------------------
         result_frame = tk.LabelFrame(main_frame,
                                      text="Filtered image",
+                                     font=("Arial", 12, "bold"),
                                      padx=10,
-                                     pady=10)
-        result_frame.pack(side="left", expand=True, fill="both", padx=15, pady=10)
+                                     pady=10,
+                                     bg="#E6E6E6")
+        result_frame.pack(side="left", expand=True, fill="both", padx=15, pady=15)
 
         self.result_label = tk.Label(result_frame,
                                      text="The filtered image will appear here!",
+                                     bg="#E6E6E6",
                                      font=("Arial", 14),
                                      fg="gray")
         self.result_label.pack(expand=True)
